@@ -34,41 +34,37 @@ export default function App() {
   }
 
   function handleInput(buttonPressed) {
-    console.log(buttonPressed) // Mostra no Console a tecla pressionada
     if (buttonPressed === '+' | buttonPressed === "-" | buttonPressed === "x" | buttonPressed === "/") {
       setCurrentNumber(currentNumber + " " + buttonPressed + " ")
-      return
+      return;
     }
     switch (buttonPressed) {
       case 'DEL':
-        setCurrentNumber(currentNumber.substring(0, (currentNumber.length - 2)))
-        return
+        setCurrentNumber(currentNumber.substring(0, (currentNumber.length - 2)));
+        return;
       case 'LIMPAR': // Limpa todo o conteúdo
-        setLastNumber("")
-        setCurrentNumber("")
-        return
+        setLastNumber('');
+        setCurrentNumber('');
+        return;
       case '=':
-        setLastNumber(currentNumber + " = ")
-        calculator()
-        return
+        setLastNumber(currentNumber + ' = ');
+        calculator();
+        return;
       case '+/-':
-        return
+        return;
+      default:
     }
 
-    setCurrentNumber(currentNumber + buttonPressed)
+    setCurrentNumber(currentNumber + buttonPressed);
   }
-
 
   return (
     <View style={styles.container}>
-
-
       <View style={styles.results} />
       <Text style={styles.historyText}>{lastNumber}</Text>
       <Text style={styles.resultText}>{currentNumber}</Text>
 
       <View style={styles.buttons}>
-
         {buttons.map((button) =>
           button === '=' ? // Mapeamento do botão =
             <TouchableOpacity onPress={() => handleInput(button)} key={button} style={[styles.button, { backgroundColor: '#3dd0e3' }]}>
@@ -77,8 +73,7 @@ export default function App() {
             : // Mapeamento dos outros botões
             <TouchableOpacity onPress={() => handleInput(button)} key={button} style={styles.button}>
               <Text style={[styles.textButton, { color: typeof (button) === 'number' ? 'black' : '#0093a6' }]}>{button}</Text>
-            </TouchableOpacity>
-        )}
+             </TouchableOpacity> )}
       </View>
     </View>
   );
@@ -91,18 +86,18 @@ const styles = StyleSheet.create({
   },
   results: {
     flex: 2,
-    justifyContent: "center",
-    backgroundColor: "#f5f5f5"
+    justifyContent: 'center',
+    backgroundColor: '#f5f5f5',
   },
   resultText: {
-    color: "#282F38",
+    color: '#282F38',
     fontSize: 32,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     padding: 12,
-    textAlign: "right"
+    textAlign: 'right',
   },
   historyText: {
-    color: "#7c7c7c",
+    color: '#7c7c7c',
     fontSize: 20,
     marginRight: 10,
     alignSelf: 'flex-end',
@@ -120,7 +115,7 @@ const styles = StyleSheet.create({
     flex: 2,
   },
   textButton: {
-    color: "#7c7c7c",
+    color: '#7c7c7c',
     fontSize: 20,
-  }
+  },
 });
