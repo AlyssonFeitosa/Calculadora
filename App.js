@@ -1,36 +1,35 @@
 import React from 'react';
-import { useState } from 'react'
-import { StyleSheet, Text, View, TouchableOpacity, Button } from 'react-native';
+import {useState} from 'react';
+import { StyleSheet, Text, View, TouchableOpacity, Button} from 'react-native';
 
 export default function App() {
-
   // Mapeamento de teclas
-  const buttons = ['LIMPAR', 'DEL', '%', '/', 7, 8, 9, "x", 6, 5, 4, '-', 3, 2, 1, '+', 0, '.', '+/-', '=']
+  const buttons = ['LIMPAR', 'DEL', '%', '/', 7, 8, 9, "x", 6, 5, 4, '-', 3, 2, 1, '+', 0, '.', '+/-','=']
 
-  const [currentNumber, setCurrentNumber] = useState("")
-  const [lastNumber, setLastNumber] = useState("")
-
+  const [currentNumber, setCurrentNumber] = useState('');
+  const [lastNumber, setLastNumber] = useState('');
 
   function calculator() {
-    const splitNumbers = currentNumber.split(' ')
-    const fistNumber = parseFloat(splitNumbers[0])
-    const lastNumber = parseFloat(splitNumbers[2])
-    const operator = splitNumbers[1]
+    const splitNumbers = currentNumber.split(' ');
+    const fistNumber = parseFloat(splitNumbers[0]);
+    const lastNumber = parseFloat(splitNumbers[2]);
+    const operator = splitNumbers[1];
 
     // Faz ação referente tecla pressionada
     switch (operator) {
       case '+':
-        setCurrentNumber((fistNumber + lastNumber).toString())
-        return
+        setCurrentNumber((fistNumber + lastNumber).toString());
+        return;
       case '-':
-        setCurrentNumber((fistNumber - lastNumber).toString())
-        return
+        setCurrentNumber((fistNumber - lastNumber).toString());
+        return;
       case 'x':
-        setCurrentNumber((fistNumber + lastNumber).toString())
-        return
+        setCurrentNumber((fistNumber + lastNumber).toString());
+        return;
       case '/':
-        setCurrentNumber((fistNumber - lastNumber).toString())
-        return
+        setCurrentNumber((fistNumber - lastNumber).toString());
+        break;
+      default:
     }
   }
 
@@ -81,8 +80,9 @@ export default function App() {
             </TouchableOpacity>
         )}
       </View>
-    ) </View>
-})
+    </View>
+  );
+}
 
 // Estilização
 const styles = StyleSheet.create({
@@ -124,4 +124,3 @@ const styles = StyleSheet.create({
     fontSize: 20,
   }
 });
-
