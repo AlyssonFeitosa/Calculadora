@@ -1,10 +1,10 @@
 import React from 'react';
 import {useState} from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Button} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity, Button} from 'react-native';
 
 export default function App() {
   // Mapeamento de teclas
-  const buttons = ['LIMPAR', 'DEL', '%', '/', 7, 8, 9, "x", 6, 5, 4, '-', 3, 2, 1, '+', 0, '.', '+/-','=']
+  const buttons = ['LIMPAR', 'DEL', '%', '/', 7, 8, 9, 'x', 4, 5, 6, '-', 1, 2, 3, '+', 0, '.', '+/-','=',]
 
   const [currentNumber, setCurrentNumber] = useState('');
   const [lastNumber, setLastNumber] = useState('');
@@ -24,10 +24,10 @@ export default function App() {
         setCurrentNumber((fistNumber - lastNumber).toString());
         return;
       case 'x':
-        setCurrentNumber((fistNumber + lastNumber).toString());
+        setCurrentNumber((fistNumber * lastNumber).toString());
         return;
       case '/':
-        setCurrentNumber((fistNumber - lastNumber).toString());
+        setCurrentNumber((fistNumber / lastNumber).toString());
         break;
       default:
     }
@@ -40,7 +40,7 @@ export default function App() {
     }
     switch (buttonPressed) {
       case 'DEL':
-        setCurrentNumber(currentNumber.substring(0, (currentNumber.length - 2)));
+        setCurrentNumber(currentNumber.substring(0, (currentNumber.length - 1)));
         return;
       case 'LIMPAR': // Limpa todo o conteúdo
         setLastNumber('');
@@ -51,6 +51,7 @@ export default function App() {
         calculator();
         return;
       case '+/-':
+        setCurrentNumber (currentNumber * ( -1));
         return;
       default:
     }
@@ -67,12 +68,12 @@ export default function App() {
       <View style={styles.buttons}>
         {buttons.map((button) =>
           button === '=' ? // Mapeamento do botão =
-            <TouchableOpacity onPress={() => handleInput(button)} key={button} style={[styles.button, { backgroundColor: '#3dd0e3' }]}>
+            <TouchableOpacity onPress={() => handleInput(button)} key={button} style={[styles.button, { backgroundColor: '#2a1940' }]}>
               <Text style={[styles.textButton, { color: "white", fontSize: 30 }]}>{button}</Text>
             </TouchableOpacity>
             : // Mapeamento dos outros botões
             <TouchableOpacity onPress={() => handleInput(button)} key={button} style={styles.button}>
-              <Text style={[styles.textButton, { color: typeof (button) === 'number' ? 'black' : '#0093a6' }]}>{button}</Text>
+              <Text style={[styles.textButton, { color: typeof (button) === 'number' ? 'white' : '#7c7c7c' }]}>{button}</Text>
              </TouchableOpacity> )}
       </View>
     </View>
@@ -83,31 +84,33 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#2a1940',
   },
   results: {
     flex: 2,
     justifyContent: 'center',
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#2a1940',
   },
   resultText: {
-    color: '#282F38',
+    color: 'white',
     fontSize: 32,
     fontWeight: 'bold',
-    padding: 12,
     textAlign: 'right',
+    marginBottom: 20,
   },
   historyText: {
     color: '#7c7c7c',
     fontSize: 20,
     marginRight: 10,
     alignSelf: 'flex-end',
+    marginBottom: 20,
   },
   buttons: {
     flexDirection: 'row',
     flexWrap: 'wrap',
   },
   button: {
-    backgroundColor: 'white',
+    backgroundColor: '#4B0082',
     alignItems: 'center',
     justifyContent: 'center',
     minWidth: 90,
